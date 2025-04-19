@@ -10,7 +10,7 @@ export default function UserContextProvider({ children }) {
 
   useEffect(() => {
     // Call the profile endpoint
-    await axios.get("https://login-20a8.onrender.com/profile")
+     axios.get("https://login-20a8.onrender.com/profile")
       .then(({ data }) => {
         // If there's a valid user, set it
         if (data) {
