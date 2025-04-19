@@ -26,7 +26,11 @@ export const login = async (req,res)=>{
         if(err){
           throw err
         }
-        res.cookie('token',token).json(user);
+        res.cookie('token', token, {
+          httpOnly: true,
+          secure: true, // required if using HTTPS (which Render does)
+          sameSite: 'None', // allows cross-site cookies
+        }).json(user);
 
       });
 
