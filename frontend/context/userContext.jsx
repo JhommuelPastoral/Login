@@ -15,6 +15,7 @@ export default function UserContextProvider({ children }) {
         // If there's a valid user, set it
         if (data) {
           setUser(data);
+          navigate("/Home");
         } else {
           // If response is null, user is not logged in
           navigate("/");
