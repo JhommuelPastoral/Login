@@ -17,7 +17,7 @@ export default function Register() {
   
     try {
       const { email, password } = data;
-      const response = await axios.post('http://localhost:5000/register', { email, password });
+      const response = await axios.post('https://login-20a8.onrender.com/register', { email, password });
   
       if (response.data.error ) {
         toast.error(response.data.error );
