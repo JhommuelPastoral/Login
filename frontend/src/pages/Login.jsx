@@ -22,6 +22,7 @@ export default function Login() {
       } else {
         toast.success('Login Successfully!');
         setData({ email: '', password: '' });
+        localStorage.setItem('token', response.data.token); 
         navigate('/Home')
       }
 
