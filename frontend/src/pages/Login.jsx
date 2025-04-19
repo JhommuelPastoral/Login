@@ -16,7 +16,7 @@ export default function Login() {
     e.preventDefault();
     const {email, password} = data;
     try {
-      const response = await axios.post('http://localhost:5000/login', {email, password} );
+      const response = await axios.post('https://login-20a8.onrender.com/login', {email, password} );
       if (response.data.error ) {
         toast.error(response.data.error );
       } else {
