@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/navbar";
 import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
 import { Toaster } from 'react-hot-toast';
