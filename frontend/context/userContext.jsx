@@ -13,11 +13,7 @@ export default function UserContextProvider({ children }) {
 
     if (token) {
       // If there's a token, send it with the request to the profile endpoint
-      axios.get("https://login-20a8.onrender.com/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      axios.get("https://login-20a8.onrender.com/profile")
       .then(({ data }) => {
         if (data) {
           setUser(data);
