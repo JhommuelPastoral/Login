@@ -9,15 +9,21 @@ export default function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Call the profile endpoint
-    axios.get("https://login-20a8.onrender.com/profile")
+    const token = localStorage.getItem("token"); // Retrieve the token from localStorage
+
+    if (token) {
+      // If there's a token, send it with the request to the profile endpoint
+      axios.get("https://login-20a8.onrender.com/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(({ data }) => {
-        // If there's a valid user, set it
         if (data) {
           setUser(data);
           navigate("/Home");
         } else {
-          // If response is null, user is not logged in
+          setUser(null);
           navigate("/");
         }
       })
@@ -26,7 +32,13 @@ export default function UserContextProvider({ children }) {
         setUser(null);
         navigate("/");
       });
-  }, []);
+    } else {
+      // If no token, treat user as logged out
+      setUser(null);
+      navigate("/");
+    }
+  }, [navigate]);
+
 
 
   return (
