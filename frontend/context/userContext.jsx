@@ -8,25 +8,25 @@ export default function UserContextProvider({ children }) {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-useEffect(() => {
-  axios.get("https://login-20a8.onrender.com/profile")
-    .then(({ data }) => {
-      if (data) {
-        setUser(data);
-        // Only navigate if we're not already on /Home
-        if (window.location.pathname === "/") {
+  useEffect(() => {
+    // Call the profile endpoint
+    axios.get("https://login-20a8.onrender.com/profile")
+      .then(({ data }) => {
+        // If there's a valid user, set it
+        if (data) {
+          setUser(data);
           navigate("/Home");
+        } else {
+          // If response is null, user is not logged in
+          navigate("/");
         }
-      } else {
+      })
+      .catch((err) => {
+        console.error("Token expired or request failed:", err);
+        setUser(null);
         navigate("/");
-      }
-    })
-    .catch((err) => {
-      console.error("Token expired or request failed:", err);
-      setUser(null);
-      navigate("/");
-    });
-}, []);
+      });
+  }, []);
 
 
   return (
